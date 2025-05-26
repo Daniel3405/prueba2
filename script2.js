@@ -14,18 +14,34 @@ function validar(){
 }
 
 function validarcarateres(){
-    if(elemento,valor,error){
+    if(str){
         console.log("Solo letras")
         alert("Debes ingresar solo letras")
         eError.innerText = "Debes ingresar solo letras!"
-        
-        
-        return "falla"
+    
+        return "fallo"
     }else{
-        console.log("Todo bien")
+        console.log("registrado")
         eError.innerText = ""
-        return "exito"
+        return "ingresando"
     }
 }
+
+function validaredad(){
+    if (vEdad >18){
+        console.log("debes ser mayor ")
+        alert("Debes ser mayo de edad ")
+        eError.innerText("tienes que tener 18")
+
+        return "fallo"
+    }else{
+        console.log("registrado")
+        eError.innerText =""
+        return "ingresando"
+    }
+    
+}
+
+
 
 
