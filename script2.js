@@ -38,6 +38,8 @@ function validaredad(){
         console.log("registrado")
         eError.innerText =""
         return "ingresando"
+
+        
     }
     
 }
