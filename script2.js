@@ -1,49 +1,80 @@
 //validar nombre, debe contener solo letras y no ser vacio
 //validar edad: Debe ser mayor o igual a 18 y menor a 100
 
-Registro = []
+miFormulario = []
 
 function validar(){
     let eNombre = document.getElementById("nombre")
-    let vNombre = eNombre.value()
-    let errorNombre = document.getElementById("Error Nombre")
+    let vNombre = eNombre.value
+    let eErrorNombre = document.getElementById("errorNombre")
 
     let eEdad = document.getElementById("edad")
-    let vEdad = eEdad.value()
-    let errorEdad = document.getElementById("Error edad")
+    let vEdad = eEdad.value
+    let eErrorEdad = document.getElementById("erroredad")
+    
+    let rNombre = validardatos(eNombre, vNombre,eErrorNombre)
+    let rEdad = validaredad(eEdad, vEdad, eErrorEdad)
+    if(rNombre === "valido" && rEdad ==="valido"){
+        let regis = {
+            nombre: vNombre,
+            edad: vEdad
+        };
+        miFormulario.push(regis);
+        console.log(Registro);
+        eNombre.value="";
+        eEdad.value="";
+        subirDatos();
+    }
 }
 
-function validarcarateres(){
-    if(str){
-        console.log("Solo letras")
+function validardatos(val,eError){
+    const Letras = /^[A-Za-z]+$/;
+    if (val.length > 0 && !Letras.test(val)) {
+        console.log("son solo letras")
         alert("Debes ingresar solo letras")
         eError.innerText = "Debes ingresar solo letras!"
-    
-        return "fallo"
+
+        return "error"
     }else{
         console.log("registrado")
         eError.innerText = ""
-        return "ingresando"
+        return "valido"
     }
 }
 
 function validaredad(){
-    if (vEdad >18){
-        console.log("debes ser mayor ")
-        alert("Debes ser mayo de edad ")
-        eError.innerText("tienes que tener 18")
-
+    if (vEdad || vEdad <= 18 || vEdad > 100) {
+        console.log("debes tener entre 18 y 100")
+        alert("Debes tener la edad pedida (18-100) ")
+        eErrorEdad.innerText = "Tienes que tener al menos 18 años o menos de 100"
         return "fallo"
     }else{
         console.log("registrado")
-        eError.innerText =""
-        return "ingresando"
-
-        
+        eError.innerText = "";
+        return "valido"
     }
-    
 }
 
+function cargarDatos() {
+    console.log("verificando...")
+    let mapPersonas = personas.map((p, index) => {
+        return `<tr>
+            <td>${p.nombre}</td>
+            <td>${p.edad}</td>
+            <td>
+                <button onclick='eliminar(${index})'>Eliminar</button>
+                <button onclick='actualizarFormulario(${index})'>Actualizar</button>
+            </td>
+        </tr>`;
+    });
+    let cuerpoTabla = document.getElementById("cuerpoTabla");
+    cuerpoTabla.innerHTML = mapPersonas.join("");
+    document.getElementById("cuerpoTabla").innerHTML = mapPersonas.join("");
+}
 
-
-
+function eliminar(dato) {
+    if (confirm("¿Estás seguro de eliminar este registro?")) {
+        personas = personas.filter((_, index) => index !== dato);
+        cargarDatos();
+    }
+}
