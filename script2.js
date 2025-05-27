@@ -54,27 +54,3 @@ function validaredad(){
         return "valido"
     }
 }
-
-function cargarDatos() {
-    console.log("verificando...")
-    let mapPersonas = personas.map((p, index) => {
-        return `<tr>
-            <td>${p.nombre}</td>
-            <td>${p.edad}</td>
-            <td>
-                <button onclick='eliminar(${index})'>Eliminar</button>
-                <button onclick='actualizarFormulario(${index})'>Actualizar</button>
-            </td>
-        </tr>`;
-    });
-    let cuerpoTabla = document.getElementById("cuerpoTabla");
-    cuerpoTabla.innerHTML = mapPersonas.join("");
-    document.getElementById("cuerpoTabla").innerHTML = mapPersonas.join("");
-}
-
-function eliminar(dato) {
-    if (confirm("¿Estás seguro de eliminar este registro?")) {
-        personas = personas.filter((_, index) => index !== dato);
-        cargarDatos();
-    }
-}
