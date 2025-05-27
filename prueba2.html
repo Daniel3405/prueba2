@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Validación</title>
-    <script src="script2.js"></script>
+    <script src="JS/script2.js"></script>
 </head>
 <body>
 
@@ -18,8 +18,7 @@
         <input type="number" id="edad" name="edad">
         <span class="error" id="errorEdad"></span>
         <br>
-
-        <button type="button" onclick="validar()" id="btn">Enviar</button>
+        <button type="button" onclick="validar()">Enviar</button>
     </form>
 
     
@@ -35,6 +34,11 @@
 
         </tbody>
     </table>
+    <form>
+        <input type="text" id="nombre" placeholder="ingresa nombre"/><br>
+        <input type="text"id=edad placeholder="ingresa edad"/><br>
+        <button type="button" onclick="Actualizar()" id="btnActualizar">Actualizar</button>
+    </form>
 
 </body>
 </html>
